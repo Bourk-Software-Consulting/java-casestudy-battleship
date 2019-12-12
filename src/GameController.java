@@ -8,6 +8,7 @@ public class GameController
 {
     public static final int ASCII_A = 65;
     public static final int TABLE_OFFSET = 1;
+    public static final Character AircraftCarrierCode = 'A';
 
     public static Boolean CheckIsHit(Iterable<Ship> ships, Position shot)
     {
@@ -64,7 +65,7 @@ public class GameController
         char orientation = positionAndOrientation.charAt(2);
 
         for(int x = 0 ; x < size ; x++){
-            boardGame[row][column]='A'; //TODO
+            boardGame[row][column]= AircraftCarrierCode;
             column++;
         }
 
