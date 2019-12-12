@@ -6,9 +6,9 @@ import java.util.Random;
 
 public class GameController
 {
-    public static final int ASCII_A = 65;
-    public static final int TABLE_OFFSET = 1;
-    public static final Character AircraftCarrierCode = 'A';
+    private static final int ASCII_A = 65;
+    private static final int TABLE_OFFSET = 1;
+    private static final Character AircraftCarrierCode = 'A';
 
     public static Boolean CheckIsHit(Iterable<Ship> ships, Position shot)
     {
@@ -38,7 +38,7 @@ public class GameController
     public static ArrayList<Ship> InitializeShips()
     {
         ArrayList<Ship> ships = new ArrayList<Ship>();
-        ships.add(new Ship( "Aircraft Carrier",  5, Color.BLUE));
+        ships.add(new AircraftCarrier());
         ships.add(new Ship( "Battleship",  4, Color.RED));
         ships.add(new Ship( "Submarine",  5, Color.GRAY));
         ships.add(new Ship( "Destroyer",  5, Color.YELLOW));
@@ -59,7 +59,7 @@ public class GameController
 
     public Character[][] placeAircraftCarrier(String positionAndOrientation) {
 
-        int size = 5;
+        int size = AircraftCarrier.size;
         int column  = ((int) Character.toUpperCase(positionAndOrientation.charAt(0))) - ASCII_A + TABLE_OFFSET;
         int row = Integer.parseInt(positionAndOrientation.substring(1,2));
         char orientation = positionAndOrientation.charAt(2);
