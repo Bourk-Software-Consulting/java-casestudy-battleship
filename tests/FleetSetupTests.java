@@ -24,7 +24,7 @@ public class FleetSetupTests {
                 {'8',' ',' ',' ',' ',' ',' ',' ',' '}};
 
         GameController game = new GameController();
-        Character[][] board = game.setAirCraft("A2H");
+        Character[][] board = game.placeAircraftCarrier("A2H");
         assertArrayEquals(expectedBoard,board);
     }
 }

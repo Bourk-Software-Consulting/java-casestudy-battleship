@@ -57,7 +57,7 @@ public class GameController
             {'7',' ',' ',' ',' ',' ',' ',' ',' '},
             {'8',' ',' ',' ',' ',' ',' ',' ',' '}};
 
-    public Character[][] setAirCraft(String positionAndOrientation) {
+    public Character[][] placeAircraftCarrier(String positionAndOrientation) {
 
         int size = 5;
         int column  = ((int) Character.toUpperCase(positionAndOrientation.charAt(0))) - ASCII_A + TABLE_OFFSET;
