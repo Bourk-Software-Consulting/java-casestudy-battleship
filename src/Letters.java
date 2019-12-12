@@ -1,5 +1,3 @@
-package com.bourksoftware;
-
 /// <summary>
 /// com.bourksoftware.Letters for the column
 /// </summary>

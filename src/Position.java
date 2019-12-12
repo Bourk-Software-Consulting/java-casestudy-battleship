@@ -1,6 +1,3 @@
-package com.bourksoftware;
-
-
 public class Position
 {
     /// <summary>
