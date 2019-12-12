@@ -9,6 +9,8 @@ import java.util.Random;
 /// </summary>
 public class GameController
 {
+    public static final int ASCII_A = 65;
+    public static final int TABLE_OFFSET = 1;
     /// <summary>
     /// Checks the is hit.
     /// </summary>
@@ -26,6 +28,9 @@ public class GameController
     ///     or
     ///     shot
     /// </exception>
+
+
+
     public static Boolean CheckIsHit(Iterable<Ship> ships, Position shot)
     {
         if (ships == null)
@@ -89,5 +94,31 @@ public class GameController
         Integer number = random.nextInt(size);
         Position position = new Position(lettre, number);
         return position;
+    }
+
+    Character[][] boardGame = {
+            {' ','A','B','C','D','E','F','G','H'},
+            {'1',' ',' ',' ',' ',' ',' ',' ',' '},
+            {'2',' ',' ',' ',' ',' ',' ',' ',' '},
+            {'3',' ',' ',' ',' ',' ',' ',' ',' '},
+            {'4',' ',' ',' ',' ',' ',' ',' ',' '},
+            {'5',' ',' ',' ',' ',' ',' ',' ',' '},
+            {'6',' ',' ',' ',' ',' ',' ',' ',' '},
+            {'7',' ',' ',' ',' ',' ',' ',' ',' '},
+            {'8',' ',' ',' ',' ',' ',' ',' ',' '}};
+
+    public Character[][] setAirCraft(String positionAndOrientation) {
+
+        int size = 5;
+        int column  = ((int) Character.toUpperCase(positionAndOrientation.charAt(0))) - ASCII_A + TABLE_OFFSET;
+        int row = Integer.parseInt(positionAndOrientation.substring(1,2));
+        char orientation = positionAndOrientation.charAt(2);
+
+        for(int x = 0 ; x < size ; x++){
+            boardGame[row][column]='A'; //TODO
+            column++;
+        }
+
+        return boardGame;
     }
 }

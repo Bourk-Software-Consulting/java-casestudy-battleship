@@ -1,0 +1,4 @@
+/out/production/battleship_java/*.class
+/out/test/battleship_java/*.class
+/*.iml
+/.idea
