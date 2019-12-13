@@ -1,4 +1,7 @@
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 /// <summary>
@@ -9,12 +12,12 @@ public class Ship
     /// <summary>
     /// Gets  the name.
     /// </summary>
-    public  String name;
+    protected String name;
 
     /// <summary>
     /// The color of the ship
     /// </summary>
-    public  Color color;
+    private  Color color;
 
     private Boolean isPlaced;
 
@@ -38,7 +41,7 @@ public class Ship
     /// <summary>
     /// Gets or sets the size.
     /// </summary>
-    public Integer size;
+    private Integer size;
 
 
     /// <summary>
@@ -70,4 +73,15 @@ public class Ship
     }
 
 
+    public void place() throws IOException {
+
+        System.out.println();
+        System.out.println("Please enter the positions for the "+ name+" (size: "+ size+")" );
+
+        for(int  i = 0 ; i < size ; i ++) {
+            System.out.println("Enter position " + i + " of " + size + " (i.e A3):");
+            BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
+            AddPosition(obj.readLine());
+        }
+    }
 }

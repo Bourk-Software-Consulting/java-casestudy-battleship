@@ -23,8 +23,7 @@ public class FleetSetupTests {
                 {'7',' ',' ',' ',' ',' ',' ',' ',' '},
                 {'8',' ',' ',' ',' ',' ',' ',' ',' '}};
 
-        GameController game = new GameController();
-        Character[][] board = game.placeAircraftCarrier("A2H");
-        assertArrayEquals(expectedBoard,board);
+        new AircraftCarrier().placeAt("A2H");
+        assertArrayEquals(expectedBoard,GameController.boardGame);
     }
 }

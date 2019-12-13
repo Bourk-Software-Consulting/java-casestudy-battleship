@@ -93,14 +93,7 @@ public class Main {
 
         for (Ship ship : myFleet)
         {
-            System.out.println();
-            System.out.println("Please enter the positions for the "+ship.name+" (size: "+ship.size+")" );
-            for (int i = 1; i <= ship.size; i++)
-            {
-                System.out.println("Enter position "+i+ " of "+ship.size +" (i.e A3):");
-                BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
-                ship.AddPosition(obj.readLine());
-            }
+            ship.place();
         }
     }
     private static void DisplayHit()

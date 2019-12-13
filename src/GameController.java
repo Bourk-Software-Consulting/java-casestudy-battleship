@@ -1,4 +1,5 @@
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -6,9 +7,8 @@ import java.util.Random;
 
 public class GameController
 {
-    private static final int ASCII_A = 65;
-    private static final int TABLE_OFFSET = 1;
-    private static final Character AircraftCarrierCode = 'A';
+    public static final int ASCII_A = 65;
+    public static final int TABLE_OFFSET = 1;
 
     public static Boolean CheckIsHit(Iterable<Ship> ships, Position shot)
     {
@@ -46,7 +46,7 @@ public class GameController
         return ships;
     }
 
-    Character[][] boardGame = {
+    public static Character[][] boardGame = {
             {' ','A','B','C','D','E','F','G','H'},
             {'1',' ',' ',' ',' ',' ',' ',' ',' '},
             {'2',' ',' ',' ',' ',' ',' ',' ',' '},
@@ -56,19 +56,4 @@ public class GameController
             {'6',' ',' ',' ',' ',' ',' ',' ',' '},
             {'7',' ',' ',' ',' ',' ',' ',' ',' '},
             {'8',' ',' ',' ',' ',' ',' ',' ',' '}};
-
-    public Character[][] placeAircraftCarrier(String positionAndOrientation) {
-
-        int size = AircraftCarrier.size;
-        int column  = ((int) Character.toUpperCase(positionAndOrientation.charAt(0))) - ASCII_A + TABLE_OFFSET;
-        int row = Integer.parseInt(positionAndOrientation.substring(1,2));
-        char orientation = positionAndOrientation.charAt(2);
-
-        for(int x = 0 ; x < size ; x++){
-            boardGame[row][column]= AircraftCarrierCode;
-            column++;
-        }
-
-        return boardGame;
-    }
 }
