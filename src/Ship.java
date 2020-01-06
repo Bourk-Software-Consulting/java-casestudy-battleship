@@ -9,6 +9,8 @@ import java.util.ArrayList;
 /// </summary>
 public class Ship
 {
+    protected Character code = 'S';
+
     /// <summary>
     /// Gets  the name.
     /// </summary>
@@ -18,20 +20,24 @@ public class Ship
     /// The color of the ship
     /// </summary>
     private  Color color;
+    private ISea sea;
 
     private Boolean isPlaced;
 
     /// <summary>
     /// Initializes a new instance of the <see cref="com.bourksoftware.Ship"/> class.
     /// </summary>
-    public Ship(String name, Integer size, java.awt.Color color)
+    public Ship(String name, Integer size, java.awt.Color color, ISea boardgame)
     {
         this.name = name;
         this.size = size;
         this.color = color;
+        this.sea = boardgame;
         positions = new ArrayList<Position>();
     }
-
+    public Ship(String name, int size, Color color) {
+        this(name,size,color,null);
+    }
     /// <summary>
     /// Gets the positions.
     /// </summary>
@@ -42,6 +48,8 @@ public class Ship
     /// Gets or sets the size.
     /// </summary>
     private Integer size;
+
+
 
 
     /// <summary>
@@ -72,16 +80,42 @@ public class Ship
             isPlaced = value;
     }
 
-
     public void place() throws IOException {
-
         System.out.println();
-        System.out.println("Please enter the positions for the "+ name+" (size: "+ size+")" );
+        System.out.println("Please enter the position for the Front of the Ship with its orientation (Horizontal (H) or Vertical (V) for the "+ this.name +" (size: "+ size+")" );
+        System.out.println("example: A4H = will result in placing the ship at Coordinates: A4 A5 A6 A7 A8");
+        BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
 
-        for(int  i = 0 ; i < size ; i ++) {
-            System.out.println("Enter position " + i + " of " + size + " (i.e A3):");
-            BufferedReader obj = new BufferedReader(new InputStreamReader(System.in));
-            AddPosition(obj.readLine());
+        boolean placing = true;
+        while(placing){
+            try {
+                String positionAndOrientation = obj.readLine();
+                placeAt(positionAndOrientation);
+                placing=false;
+            }
+            catch (Exception e){ //TODO Instead of using Exception - use if, to speed up the program
+                System.out.println("Please enter a valid position and orientation");
+            }
+        }
+    }
+
+    public void placeAt(String positionAndOrientation){
+
+        AddPosition(positionAndOrientation.substring(0,2));
+
+        int column  = ((int) Character.toUpperCase(positionAndOrientation.charAt(0))) - GameController.ASCII_A + GameController.TABLE_OFFSET;
+        int row = Integer.parseInt(positionAndOrientation.substring(1,2));
+        char orientation = positionAndOrientation.charAt(2);
+
+        for(int x = 0 ; x < size ; x++){
+
+            if(sea!=null)
+                sea.placeShip(row,column, code);
+
+            if(orientation == 'H')
+                column++;
+            else
+                row++;
         }
     }
 }
